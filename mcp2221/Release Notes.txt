@@ -1,0 +1,81 @@
+-------------------------------------------------------------------
+        Release Notes for the MCP2221 DLL package
+-------------------------------------------------------------------
+
+                Microchip Technology, Inc.
+
+
+MCP2221 DLL package includes three types of libraries, implementing the API that user applications 
+may include in order to configure and use the MCP2221 device features:
+ - unmanaged DLL (.dll)
+ - managed DLL (.dll)
+ - standard C library (.lib)
+
+The managed DLLs are offered for the following .NET versions: 
+ - .NET4
+ - .NET2
+  
+The libraries are included both as 32bit and 64bit builds, 
+except managed DLL for .NET2 which is supported only in 32bit version.
+
+-------------------------------------------------------------------
+System Requirements
+-------------------------------------------------------------------
+Operating System: Windows XP SP3 or later.
+
+.NET4 Version: .NET4 Framework and Microsoft Visual C++ 2013 Redistributable Package (x86)*
+.NET2 Version: .NET2 Framework and Microsoft Visual C++ 2008 Redistributable Package (x86)**
+
+  *= Or include msvcp120.dll and msvcr120.dll in same directory as DLL
+ **= Or include msvcp90.dll, msvcm90.dll, and msvcr90.dll in same directory as DLL
+
+-------------------------------------------------------------------
+Versioning History
+-------------------------------------------------------------------
+Version 2.2.1(21-Mar-2018)
+    - version 2.2.1 released to website, bug fix: 
+	- Mcp2221_GetProductDescriptor had issues when USB connection was removed
+
+Version 2.2 (25-Sept-2017)
+    - version 2.2b released to website
+
+Version 2.2b (26-Jan-2017)
+    - fixed issue with Mcp2221_SetGpioSettings where the IOs were incorrectly configured when writing to flash.
+    
+Version 2.2a (19-Oct-2016)
+    - alpha version containing: 
+        - Mcp2221_SmbusBlockWriteBlockReadProcessCall
+        - Mcp2221_I2cWriteNoStop
+        - Mcp2221_I2cReadRestart
+        - Mcp2221_I2cWriteRestart        
+        
+Version 2.1.1 (30-May-2016)
+    - Bug fix: link error when using the .lib file to import the unmanaged dll 
+    - updated mcp2221_dll_um.h file to include calling convention
+    
+Version 2.1 (18-May-2016)
+    - Bug fix: Application exception caused by HID device enumeration inside managed dll, unmanaged dll
+    or lib, if HID device with hardware ID longer than 68 characters is found. 
+    The API calls affected by this issue are: GetConnectedDevCount(), OpenByIndex(), OpenBySN(). 
+    - Bug fix: DLL lockup if MCP2221 is disconnected during an SMBusReadByte, SMBusReadWord, SMBusBlockRead;
+    - Added SMBusSendByte and SMBusReceiveByte methods
+    
+Version 2.0.0 - Documentation update (14-Mar-2016):
+ - Updated User Guide with information about calling convention. 
+ 
+Version 2.0.0 (Released 13-Jan-2016):
+ - The first issue of the refactored MCP2221 DLL package (DLL version 2). 
+   The main design changes implemented by the new DLL revision are (compared to 1.x.y revision):
+   - The library is stateless (there is no internal state machine tracking the device 
+     connection status)
+   - The MCP2221 devices must be "opened" first and then "identified" by their unique "file" handle 
+     which is a parameter for all the API calls. 
+
+  
+
+-------------------------------------------------------------------
+Contact Information
+-------------------------------------------------------------------
+Main Website: 		http://www.microchip.com
+Technical Support: 	http://support.microchip.com
+
