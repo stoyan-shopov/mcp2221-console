@@ -29,7 +29,8 @@ SOURCES += \
     main.cxx
 
 HEADERS += \
-        mainwindow.hxx
+        mainwindow.hxx \
+    mcp2221/unmanaged/dll/mcp2221_dll_um.h
 
 FORMS += \
         mainwindow.ui

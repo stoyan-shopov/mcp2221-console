@@ -30,22 +30,142 @@
      </layout>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>GroupBox</string>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>23</y>
-         <width>70</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>CheckBox</string>
-       </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Main</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QCheckBox" name="checkBox">
+             <property name="text">
+              <string>CheckBox</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>USB VID</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditUsbVID"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>USB PID</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditUsbPID"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Help</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QPlainTextEdit" name="plainTextEdit">
+          <property name="plainText">
+           <string>/********************************
+  Error codes
+ *********************************/
+#define E_NO_ERR 0
+#define E_ERR_UNKOWN_ERROR - 1
+#define E_ERR_CMD_FAILED -2
+#define E_ERR_INVALID_HANDLE -3
+#define E_ERR_INVALID_PARAMETER -4
+#define E_ERR_INVALID_PASS -5
+#define E_ERR_PASSWORD_LIMIT_REACHED -6
+#define E_ERR_FLASH_WRITE_PROTECTED -7
+// null pointer received
+#define E_ERR_NULL -10
+// destination string too small
+#define E_ERR_DESTINATION_TOO_SMALL -11
+#define E_ERR_INPUT_TOO_LARGE -12
+#define E_ERR_FLASH_WRITE_FAILED -13
+#define E_ERR_MALLOC -14
+
+
+
+//we tried to connect to a device with a non existent index
+#define E_ERR_NO_SUCH_INDEX -101
+// no device matching the provided criteria was found
+#define E_ERR_DEVICE_NOT_FOUND -103
+
+// one of the internal buffers of the function was too small
+#define E_ERR_INTERNAL_BUFFER_TOO_SMALL -104
+// an error occurred when trying to get the device handle
+#define E_ERR_OPEN_DEVICE_ERROR -105
+// connection already opened
+#define E_ERR_CONNECTION_ALREADY_OPENED -106 ;
+
+#define E_ERR_CLOSE_FAILED -107
+
+
+/******* I2C errors *******/
+#define E_ERR_INVALID_SPEED -401
+#define E_ERR_SPEED_NOT_SET -402
+#define E_ERR_INVALID_BYTE_NUMBER -403
+#define E_ERR_INVALID_ADDRESS -404
+#define E_ERR_I2C_BUSY -405
+//mcp2221 signaled an error during the i2c read operation
+#define E_ERR_I2C_READ_ERROR -406
+#define E_ERR_ADDRESS_NACK -407
+#define E_ERR_TIMEOUT -408
+#define E_ERR_TOO_MANY_RX_BYTES -409
+//could not copy the data received from the slave into the provided buffer;
+#define E_ERR_COPY_RX_DATA_FAILED -410
+// failed to copy the data into the HID buffer
+#define E_ERR_COPY_TX_DATA_FAILED -412
+// The i2c engine (inside mcp2221) was already idle. The cancellation command had no effect.
+#define E_ERR_NO_EFFECT -411
+#define E_ERR_INVALID_PEC -413
+// The slave sent a different value for the block size(byte count) than we expected
+#define E_ERR_BLOCK_SIZE_MISMATCH -414
+
+
+#define E_ERR_RAW_TX_TOO_LARGE -301
+#define E_ERR_RAW_TX_COPYFAILED -302
+#define E_ERR_RAW_RX_COPYFAILED -303
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
