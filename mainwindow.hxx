@@ -17,6 +17,8 @@ class MainWindow : public QMainWindow
 	{
 		DEFAULT_MCP2221_USB_VID		= 0x4d8,
 		DEFAULT_MCP2221_USB_PID		= 0xdd,
+
+		OLED_I2C_ADDRESS		= 0x3c,
 	};
 public:
 	explicit MainWindow(QWidget *parent = nullptr);

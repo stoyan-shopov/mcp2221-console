@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <windows.h>
 
 #include "mainwindow.hxx"
 #include "ui_mainwindow.h"
@@ -26,7 +27,37 @@ MainWindow::MainWindow(QWidget *parent) :
 		ui->plainTextEditLog->appendPlainText(QString("A total of %1 devices found").arg(n));
 	else
 		ui->plainTextEditLog->appendPlainText(QString("Error getting the number of connected devices, error code: %1!").arg(error));
-	qDebug() << error;
+	if (!error) do
+	{
+		void * h = Mcp2221_OpenByIndex(vid, pid, 0);
+		if (h == INVALID_HANDLE_VALUE)
+		{
+			ui->plainTextEditLog->appendPlainText("Error opening MCP2221 device!");
+			break;
+		}
+		if (Mcp2221_SetSpeed(h, 500000))
+		{
+			ui->plainTextEditLog->appendPlainText("Error setting i2c speed!");
+			break;
+		}
+		unsigned char buf[] = { 0, 0x81, 0x0, 0x8d, 0x14, 0xa1, 0xc8, 0xaf, };
+		if (error = Mcp2221_I2cWrite(h, sizeof buf, 0x3c, 1, buf))
+		{
+			ui->plainTextEditLog->appendPlainText(QString("Error writing i2c data, error code: %1!").arg(error));
+			break;
+		}
+		for (int i = 0; i < 8; i ++)
+		{
+			unsigned char buf[128 + 3] = { 0x80, 0xb0 | i, 0x40, };
+			for (int j = 0; j < 128; buf[j ++ + 3] = 0xff >> i);
+			if (error = Mcp2221_I2cWrite(h, sizeof buf, 0x3c, 1, buf))
+			{
+				ui->plainTextEditLog->appendPlainText(QString("Error writing i2c data, error code: %1!").arg(error));
+				break;
+			}
+		}
+	}
+	while (0);
 }
 
 MainWindow::~MainWindow()
